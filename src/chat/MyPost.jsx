@@ -1,4 +1,4 @@
-import React, {useContext,useEffect,Suspense} from "react";
+import React, {useContext,useEffect} from "react";
 //import LoadingButton from '@material-ui/lab/LoadingButton';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Navbar from "./components/Navbar";
@@ -39,10 +39,6 @@ const useStyles = makeStyles((theme) =>
 );
 
 
-
-
-
-
 function Index() {
   
   const [open, setOpen] = React.useState(false);
@@ -58,79 +54,38 @@ function Index() {
   
   function handleLoadMore() {
     setOpen(true)
-    let token = localStorage.getItem('token')
-    if(token != undefined && token != null){
-      axios.get(`/insult/post/?skip=${context.posts.length}`)
-        .then(res=>{
-          //alert(JSON.stringify(res.data));
-          context.setLoadMorePost(res.data);
-          setOpen(false);
-        })
-        .catch(err=>{
-          console.log(err);
-          setOpen(false)
-          //context.setPost([]);
-        })
-    }else{
-      axios.get(`/insult/post/anonymous/user/?skip=${context.posts.length}`)
-        .then(res=>{
-          //alert(JSON.stringify(res.data));
-          context.setLoadMorePost(res.data);
-          setOpen(false);
-        })
-        .catch(err=>{
-          console.log(err);
-          setOpen(false)
-          //context.setPost([]);
-        })
-    }
+    axios.get(`/insult/post/my/posting/?skip=${context.myPosts.length}`)
+      .then(res=>{
+        context.setLoadMoreMyPosts(res.data);
+        setOpen(false);
+      })
+      .catch(err=>{
+        console.log(err);
+        setOpen(false)
+      })
   }
   
   
   function fetchInsults() {
-    let token = localStorage.getItem('token')
-    if(token != undefined && token != null){
-      axios.get('/insult/post/')
-        .then(res=>{
-          context.setFetchPost();
-          context.setPost(res.data);
-        })
-        .catch(err=>{
-          //context.setPost([]);
-        })
-    }else{
-      axios.get('/insult/post/anonymous/user/')
-        .then(res=>{
-          context.setFetchPost();
-          context.setPost(res.data);
-        })
-        .catch(err=>{
-          //context.setPost([]);
-        })
-    }
+    axios.get('/insult/post/my/posting/')
+      .then(res=>{
+        context.setFetchMyPosts();
+        context.setMyPosts(res.data);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
   }
   
   
   return (
     <div>
-    <Suspense
-      fallback={<h1>Loading ...</h1>}
-    >
       <Navbar />
-      <Suspense
-      fallback={<h1>Loading top insults...</h1>}
-      >
-        <Stories />
-      </Suspense>
-      
+      {/*<Stories />*/}
       <div style={{marginBottom: 80}}>
-      <Suspense
-      fallback={<h1>Loading insults...</h1>}
-      >
-      {context.posts.map((eachPost, k) => (
-      <Post key={k} post={eachPost} />
+      {context.myPosts.map((eachPost, k) => (
+        <Post key={k} post={eachPost} />
       ))}
-      </Suspense>
       </div>
       
       {<div>
@@ -163,7 +118,6 @@ function Index() {
       <div className={classes.container}>
       </div>
       <Bottombar/>
-    </Suspense>
     </div>
   );
 }

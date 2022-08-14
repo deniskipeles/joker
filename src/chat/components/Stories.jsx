@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import { useHistory } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 // import Add from "@material-ui/icons/Add";
@@ -9,6 +10,8 @@ import Image2 from "../assets/avatar.png"
 import Image3 from "../assets/avatar2.jpeg"
 import Image4 from "../assets/avatar2.png"
 import Values from "./key-values"
+import ChatContext from "../context/ChatContext";
+
 
 const customStyles = makeStyles(() => ({
   root: {
@@ -33,9 +36,15 @@ const customStyles = makeStyles(() => ({
 }));
 
 function Stories() {
+  const history = useHistory()
   const styles = customStyles();
+  const context = useContext(ChatContext)
 
-  const stories = [Image2, Image3, Image4, Image, Image4, Image2, Image, Image3];
+  const stories = context.topPosts;
+  function avatarClick(post) {
+    context.viewPost(post);
+    history.push(`/post`)
+  }
 
   return (
     <Paper>
@@ -43,7 +52,7 @@ function Stories() {
         <h1 className={styles.storiesHeader}> {Values.short_stories} </h1>
         <div className={styles.storiesDiv}>
           {stories.map((story, k) => (
-            <Avatar variant="circular" src={story} className={styles.storyAvatar} key={k} align="center">
+            <Avatar onClick={()=>avatarClick(story)} variant="circular" src={story.bodyImg} className={styles.storyAvatar} key={k} align="center">
         
             </Avatar>
           ))}

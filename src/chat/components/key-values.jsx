@@ -4,7 +4,16 @@ const values = {
   chats: "Chats",
   home: "Home",
   me: "Account",
-  messages: "Messages"
+  joke: "joker",
+  chat: "chat",
+  messages: "Messages",
+  comments: "comments",
+  activeStatus:"My Insults",
+  privacy:"Privacy",
+  addStory:"Add Insult",
+  photosAndMedia:"Bookmarks",
+  phoneContacts:"Contacts",
+  notificationsAndSounds:"Notifications",
 }
 
 

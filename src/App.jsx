@@ -12,6 +12,10 @@ import NewChat from "./chat/NewChat"
 import Bookmark from "./chat/Bookmark"
 import Profile from "./chat/Profile"
 import Login from "./chat/Login"
+import Signup from "./chat/Signup"
+import Post from "./chat/Post"
+import CreatePost from "./chat/components/CreatePost"
+import MyPost from "./chat/MyPost"
 
 function App() {
 
@@ -39,6 +43,18 @@ function App() {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/register">
+          <Signup />
+        </Route>
+        <Route path="/my-post">
+          <MyPost />
+        </Route>
+        <Route path="/post">
+          <Post />
+        </Route>
+        <Route path="/create-post">
+          <CreatePost />
         </Route>
       </Switch>
     </ChatState>

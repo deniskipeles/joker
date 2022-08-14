@@ -1,4 +1,4 @@
-### Chat Application
+### Chat Insults Application
 
 This is a chat application where users can chat with people, create posts, save post etc.
 

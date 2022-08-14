@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ChatContext from "../context/ChatContext"
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,6 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider"
 import Avatar from "@material-ui/core/Avatar";
+import axios from 'axios';
 
 const customStyles = makeStyles(() => ({
   card: {
@@ -45,6 +46,9 @@ function UserMessage() {
 
   const context = useContext(ChatContext)
   let chats = context.chats
+  
+  
+  
   let searchList = context.messengerSearchList
   let showList = []
   if(searchList.length !== 0){
@@ -55,10 +59,13 @@ function UserMessage() {
 
   const history = useHistory()
 
-  const enterChat = username => {
-    context.setUser(username)
-    history.push('/chat')
+  const enterChat = chat => {
+    context.setChatUser(chat)
+    history.push(`/chat`)
   }
+  
+  
+  
 
   const styles = customStyles();
   return (
@@ -66,14 +73,14 @@ function UserMessage() {
       {
         showList.map((chat, k) => (
           <div key={k}>
-            <Card onClick={() => enterChat(chat.userName)} className={styles.card} elevation={0}>
+            <Card onClick={() => enterChat(chat)} className={styles.card} elevation={0}>
               <CardHeader
                 avatar={<Avatar src={chat.userImage} className={styles.userImage} />}
                 action={
                   <div align="right" style={{marginRight: 2}}>
                     <p className={styles.messageTime}>{chat.time}</p>
                     <p className={styles.messageCount}>
-                      {chat.unread && <Avatar className={styles.messageCountAvatar}>2</Avatar>}
+                      {(chat.unread > 0) && <Avatar className={styles.messageCountAvatar}>{chat.unread}</Avatar>}
                     </p>
                   </div>
                 }

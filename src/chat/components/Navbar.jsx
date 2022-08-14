@@ -4,6 +4,7 @@ import Badge from "@material-ui/core/Badge";
 import Notifications from "@material-ui/icons/NotificationsOutlined";
 import Search from "@material-ui/icons/SearchOutlined";
 import Paper from "@material-ui/core/Paper";
+import Keyword from './key-values';
 
 const customStyles = makeStyles(() => ({
   paper: {
@@ -36,8 +37,8 @@ function Navbar() {
     <Paper className={styles.paper}>
       <div className={styles.navbar}>
         <h1 className={styles.navbarHeader}>
-            <span style={{color:'#c90cf3'}}>joker</span>
-            <span style={{color: '#87c4d9'}} >chat</span>
+            <span style={{color:'#c90cf3'}}>{Keyword.joke}</span>
+            <span style={{color: '#87c4d9'}} >{Keyword.chat}</span>
         </h1>
         <span className={styles.navbarSpan}>
           <Badge badgeContent={1} color="secondary">

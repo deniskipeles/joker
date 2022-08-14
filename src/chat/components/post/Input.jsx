@@ -34,32 +34,34 @@ const customStyles = makeStyles(() => ({
 }))
 
 
-function InputField() {
+function InputField(props) {
 
     const context = useContext(ChatContext)
 
     const [message, setMessage] = useState("")
+    const [visible, setVisible] = useState(false)
     const [reply, setReply] = useState(null)
     
     const handleSubmit = e => {
         e.preventDefault()
         let data = {
-          message : message,
-          receiver : context.chatUser.id,
-          reply_to : reply
+          comment : message,
+          insult : context.onePost.insultId
         }
-        axios.post("/chat/one-to-one-message/", data)
+        //alert(context.onePost.insultId)
+        axios.post("/insult/comment/", data)
           .then(res=>{
             //alert(JSON.stringify(res.data));
-            context.sendMessage(res.data);
+            context.sendComment(res.data);
             setMessage("");
           })
           .catch(err=>{
-            alert("JSON.stringify(err.response)");
+            console.log(err);
           })
     }
 
     const styles = customStyles()
+    //if(visible) 
     return (
         <div className={styles.root}>
             <Paper>
@@ -76,7 +78,7 @@ function InputField() {
                     </Grid>
                     <Grid item xs={10} sm={10} md={10} className={styles.input}>
                         <form onSubmit={handleSubmit}>
-                            <TextField required value={message} maxRows={5} minRows={2} multiline placeholder="Type a message" fullWidth variant="filled"
+                            <TextField required value={message} maxRows={5} minRows={2} multiline placeholder="Write your comment" fullWidth variant="filled"
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton type="submit">

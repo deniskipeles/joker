@@ -13,7 +13,6 @@ import { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,6 +23,7 @@ import { useHistory } from "react-router-dom"
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
+      //margin: 10,
       marginTop: 77,
       marginBottom: 80,
       display: 'flex',
@@ -49,7 +49,9 @@ const useStyles = makeStyles((theme) =>
 //state type
 
 const initialState = {
-  identity: '',
+  username: '',
+  full_name: '',
+  email: '',
   password: '',
   isButtonDisabled: true,
   helperText: '',
@@ -62,7 +64,17 @@ const reducer = (state, action)=> {
     case 'setUsername': 
       return {
         ...state,
-        identity: action.payload
+        username: action.payload
+      };
+    case 'setFullName': 
+      return {
+        ...state,
+        full_name: action.payload
+      };
+    case 'setEmail': 
+      return {
+        ...state,
+        email: action.payload
       };
     case 'setPassword': 
       return {
@@ -95,14 +107,14 @@ const reducer = (state, action)=> {
 }
 
 
-function Login() {
+function Register() {
   const classes = useStyles();
   const context = useContext(ChatContext)
   let history = useHistory()
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (state.identity.trim() && state.password.trim()) {
+    if (state.username.trim() && state.email.trim() && state.full_name.trim() && state.password.trim()) {
      dispatch({
        type: 'setIsButtonDisabled',
        payload: false
@@ -113,14 +125,15 @@ function Login() {
         payload: true
       });
     }
-  }, [state.identity, state.password]);
+  }, [state.username, state.email, state.full_name, state.password]);
 
   const handleLogin = () => {
-    axios.post('/user/login/',state)
+    axios.post('/',state)
       .then(res=>{
+        console.log(res.data);
         dispatch({
           type: 'loginSuccess',
-          payload: 'Login Successfully'
+          payload: 'Register Successfully'
         });
         localStorage.setItem('token',res.data.token);
         let accounts=localStorage.getItem('accounts');
@@ -140,14 +153,10 @@ function Login() {
       .catch(err=>{
         dispatch({
           type: 'loginFailed',
-          payload: 'Incorrect identity or password'
+          payload: 'Existing Username or Email'
         });
       });
   };
-  
-  function register() {
-    history.push('/register');
-  }
 
   const handleKeyPress = (event) => {
     if (event.keyCode === 13 || event.which === 13) {
@@ -155,10 +164,23 @@ function Login() {
     }
   };
 
-  const handleUsernameChange =
-    (event) => {
+  const handleUsernameChange = (event) => {
       dispatch({
         type: 'setUsername',
+        payload: event.target.value
+      });
+    };
+    
+  const handleEmailChange = (event) => {
+      dispatch({
+        type: 'setEmail',
+        payload: event.target.value
+      });
+    };
+    
+  const handleFullNameChange = (event) => {
+      dispatch({
+        type: 'setFullName',
         payload: event.target.value
       });
     };
@@ -176,17 +198,39 @@ function Login() {
         <CardHeader className={classes.header} title="Login App" />
         <CardContent>
           <div>
-            <TextField
+            {<TextField
               error={state.isError}
               fullWidth
-              id="identity"
+              id="username"
               type="text"
-              label="Username or Email"
-              placeholder="Username/Email"
+              label="Username"
+              placeholder="Username"
               margin="normal"
               onChange={handleUsernameChange}
               onKeyPress={handleKeyPress}
-            />
+            />}
+            {<TextField
+              error={state.isError}
+              fullWidth
+              id="email"
+              type="email"
+              label="Email"
+              placeholder="Email"
+              margin="normal"
+              onChange={handleEmailChange}
+              onKeyPress={handleKeyPress}
+            />}
+            {<TextField
+              error={state.isError}
+              fullWidth
+              id="full_name"
+              type="text"
+              label="full name"
+              placeholder="full name"
+              margin="normal"
+              onChange={handleFullNameChange}
+              onKeyPress={handleKeyPress}
+            />}
             <TextField
               error={state.isError}
               fullWidth
@@ -209,16 +253,9 @@ function Login() {
             className={classes.loginBtn}
             onClick={handleLogin}
             disabled={state.isButtonDisabled}>
-            Login
+            Register
           </Button>
         </CardActions>
-        
-        <h3></h3>
-        <center>
-          <Link onClick={register}>register here</Link>
-        </center>
-        <div className={classes.container}>
-        </div>
       </Card>
     </form>
   );
@@ -238,7 +275,7 @@ function Index() {
   return (
     <div>
       <Navbar />
-      <Login />
+      <Register />
       <Bottombar />
     </div>
   );

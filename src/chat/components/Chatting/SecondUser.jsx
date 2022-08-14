@@ -30,11 +30,11 @@ const customStyles = makeStyles(() => ({
     }
 }))
 
-function SecondUser({message}) {
+function SecondUser({message, image}) {
     const styles = customStyles()
     return (
         <div className={styles.root}>
-            <Avatar className={styles.avatar} src={Image}  />
+            <Avatar className={styles.avatar} src={image}  />
             <div className={styles.message}>
                {message}
             </div>

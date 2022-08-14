@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 
 import {useHistory} from "react-router-dom"
-import moment from 'moment'
+
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper"
 import IconButton from "@material-ui/core/IconButton"
@@ -9,8 +9,9 @@ import IconButton from "@material-ui/core/IconButton"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import VideoIcon from "@material-ui/icons/VideoCallOutlined"
 import CallIcon from '@material-ui/icons/CallOutlined'
-import InfoIcon from "@material-ui/icons/InfoOutlined"
+import DeleteIcon from "@material-ui/icons/Delete"//InfoOutlined"
 import ChatContext from '../context/ChatContext';
+import axios from 'axios';
 
 const customStyles = makeStyles(() => ({
     root: {
@@ -44,20 +45,20 @@ const customStyles = makeStyles(() => ({
     }
 }))
 
-function ChatNavBar() {
+function ChatNavBar(props) {
 
     const context = useContext(ChatContext)
 
     const history = useHistory()
     
-    function videoChat() {
-      alert("video call coming soon")
-    }
-    function callChat() {
-      alert("insults calls coming soon")
-    }
-    function infoFunction() {
-      history.push('/privacy')
+    function deletePostFunc() {
+      axios.delete(`/insult/post/${props.post.insultId}`)
+        .then(res=>{
+          history.push('/')
+        })
+        .catch(err=>{
+          alert('error occured while deleting your post');
+        })
     }
 
     const styles = customStyles()
@@ -69,17 +70,22 @@ function ChatNavBar() {
                 </IconButton>
                 <span className={styles.userBar}>
                     <p className={styles.userName}> <b> {context.user.userName} </b> </p>
-                    <p className={styles.userLastSeen}>Last seen {moment(context.chatUser.lastSeen).fromNow()}</p>
+                    <p className={styles.userLastSeen}>Go Back</p>
                 </span>
-                <IconButton onClick={videoChat}>
+                {/*
+                <IconButton>
                     <VideoIcon/>
                 </IconButton>
-                <IconButton onClick={callChat}>
+                <IconButton>
                     <CallIcon/>
                 </IconButton>
-                <IconButton onClick={infoFunction}>
-                    <InfoIcon/>
+                */}
+                {context.user._id == context.onePost.userId ?
+                <IconButton onClick={deletePostFunc}>
+                    <DeleteIcon/>
                 </IconButton>
+                : null
+                }
            </Paper> 
         </div>
     )

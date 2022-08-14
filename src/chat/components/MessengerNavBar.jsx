@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom"
 import Chat from "@material-ui/icons/ChatBubbleOutline"
 import Search from "@material-ui/icons/SearchOutlined";
 import Person from "@material-ui/icons/PersonOutline"
+import Groups from "@material-ui/icons/Group"
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton"
 
@@ -44,6 +45,10 @@ function MessengerNavBar() {
   const context = useContext(ChatContext)
 
   const styles = customStyles();
+  function groupChat() {
+    // history.push('/profile')
+    alert("group chat is comming soon")
+  }
 
   return (
     <Paper className={styles.paper}>
@@ -62,8 +67,8 @@ function MessengerNavBar() {
                 </IconButton>
               </span>
               <span className={styles.navbarSpan}>
-                <IconButton onClick={() => history.push('/profile')}>
-                  <Person className={styles.navbarIcon} />
+                <IconButton onClick={groupChat}>
+                  <Groups className={styles.navbarIcon} />
                 </IconButton>
               </span>
               <span className={styles.navbarSpan}>
