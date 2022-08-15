@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from "react-router-dom"
 import axios from 'axios';
+
+// add the beginning of your app entry
+import 'vite/modulepreload-polyfill'
+
 //import * as serviceWorker from './serviceWorker';
 
 //const url = "http://localhost:8000";

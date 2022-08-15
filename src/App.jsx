@@ -1,6 +1,6 @@
 // import all chat pages
 import "./chat/assets/app.css"
-
+import React from 'react'
 import Index from "./chat/index"
 import Messenger from "./chat/Messenger"
 import Chat from "./chat/Chat"
