@@ -13,10 +13,10 @@ export default {
 export default defineConfig({
   server:{hmr:{overlay:false}},
   plugins: [react()],
-  base:'./',
+  //base:'./',
   build: {
     // generate manifest.json in outDir
-    // manifest: false
+    manifest: true,
     rollupOptions: {
       // overwrite default .html entry
       input: '/src/index.jsx'
