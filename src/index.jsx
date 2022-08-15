@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom"
 import axios from 'axios';
 
 // add the beginning of your app entry
-import 'vite/modulepreload-polyfill'
+//import 'vite/modulepreload-polyfill'
 
 //import * as serviceWorker from './serviceWorker';
 
