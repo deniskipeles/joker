@@ -56,15 +56,7 @@
   
   <link rel="manifest" href="/manifest.json" />
   
-  <script type="module">
-    if (import.meta.hot) {
-      if (!window.__vite_plugin_react_preamble_installed__) {
-        window.__vite_plugin_react_preamble_installed__=true
-      }
-    }
-  </script>
   
-  <script type="module" src="/src/index.jsx"></script>
   
   
   
@@ -86,7 +78,15 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     
+  <script type="module">
+    if (import.meta.hot) {
+      if (!window.__vite_plugin_react_preamble_installed__) {
+        window.__vite_plugin_react_preamble_installed__=true
+      }
+    }
+  </script>
     
+    <script type="module" src="/src/index.jsx"></script>
     <script src="node_modules/eruda/eruda.js"></script>
     <script>eruda.init();</script>
   </body>
