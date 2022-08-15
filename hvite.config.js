@@ -42,5 +42,20 @@ export default defineConfig({
 
 
 /*
-
+"share_target": {
+      "action": "/share-photo",
+      "method": "POST",
+      "enctype": "multipart/form-data",
+      "params": {
+        "title": "name",
+        "text": "description",
+        "url": "link",
+        "files": [
+          {
+            "name": "photos",
+            "accept": "image/png"
+          }
+        ]
+      }
+    },
 */
