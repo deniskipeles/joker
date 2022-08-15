@@ -29,7 +29,7 @@
   <link rel="icon" href="/favicon.ico" />
   
   
-  <title>Friendly Insults. Please don't take anything personal</title>
+  <title>Friendly Insults/Mchongoano. Please don't take anything personal</title>
 
   
 
@@ -55,27 +55,38 @@
   <base href="/"/>
   
   <link rel="manifest" href="/manifest.json" />
-
+  
+  <script type="module">
+    if (import.meta.hot) {
+      if (!window.__vite_plugin_react_preamble_installed__) {
+        window.__vite_plugin_react_preamble_installed__=true
+      }
+    }
+  </script>
+  
   <script type="module" src="/src/index.jsx"></script>
   
   
-  <!---
-  <script type="module" src="http://localhost:3000/@vite/client"></script>
-  <script type="module" src="http://localhost:3000/main.js"></script>
   
+  <!--
   <script type="module">
   import RefreshRuntime from 'http://localhost:3000/@react-refresh'
   RefreshRuntime.injectIntoGlobalHook(window)
   window.$RefreshReg$ = () => {}
   window.$RefreshSig$ = () => (type) => type
   window.__vite_plugin_react_preamble_installed__ = true
-  </script>-->
+  </script>
+  <script type="module" src="http://localhost:3000/@vite/client"></script>
+  <script type="module" src="http://localhost:3000/assets"></script>
+  -->
 </head>
 
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    
     <script src="node_modules/eruda/eruda.js"></script>
     <script>eruda.init();</script>
   </body>
