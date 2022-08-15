@@ -16,11 +16,11 @@ export default defineConfig({
   base:'./',
   build: {
     // generate manifest.json in outDir
-    manifest: false
-    /*rollupOptions: {
+    // manifest: false
+    rollupOptions: {
       // overwrite default .html entry
       input: '/src/index.jsx'
-    }*/
+    }
   }
 })
 
