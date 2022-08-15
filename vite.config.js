@@ -13,6 +13,7 @@ export default {
 export default defineConfig({
   server:{hmr:{overlay:false}},
   plugins: [react()],
+  base:'./',
   build: {
     // generate manifest.json in outDir
     manifest: false
