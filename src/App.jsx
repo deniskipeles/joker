@@ -19,7 +19,7 @@ import MyPost from "./chat/MyPost"
 
 function App() {
 
-  return <div className="main">
+  return <div className="App">
     <ChatState>
       <Switch>
         {/* set all chat design routes */}
