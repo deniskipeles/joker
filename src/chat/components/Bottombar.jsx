@@ -245,7 +245,7 @@ function Bottombar() {
   }
 
   return (
-    <div className="main">
+    <div className="bottomBar">
     <div className={styles.root}>
       {message &&
         <div align="right" className={styles.fabDiv}>
