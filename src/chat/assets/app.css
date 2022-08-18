@@ -4,6 +4,7 @@ body{
 
 .main {
   max-width:400px;
+  margin: auto;
 }
 
 .makeStyles-storiesDiv-8::-webkit-scrollbar{
