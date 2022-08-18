@@ -28,8 +28,7 @@ const customStyles = makeStyles(() => ({
     bottom: 0,
     position: "fixed",
     width: '100vw !important',
-    zIndex: 999,
-    maxWidth:'400px'
+    zIndex: 999
   },
   fabDiv: {
     marginRight: '10px',
@@ -246,6 +245,7 @@ function Bottombar() {
   }
 
   return (
+    <div className="main">
     <div className={styles.root}>
       {message &&
         <div align="right" className={styles.fabDiv}>
@@ -284,6 +284,7 @@ function Bottombar() {
         </BottomNavigation>
       </Paper>
 
+    </div>
     </div>
   );
 }
