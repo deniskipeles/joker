@@ -245,7 +245,7 @@ function Bottombar() {
   }
 
   return (
-    <div className="bottomBar">
+    
     <div className={styles.root}>
       {message &&
         <div align="right" className={styles.fabDiv}>
@@ -284,7 +284,6 @@ function Bottombar() {
         </BottomNavigation>
       </Paper>
 
-    </div>
     </div>
   );
 }
