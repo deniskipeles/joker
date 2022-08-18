@@ -16,7 +16,7 @@ if (getToken !== null && getToken !== undefined) {
   token=getToken;
 }
 
-const socket = io("http://localhost:8000", {
+const socket = io("https://insult-challenge.herokuapp.com", {
   reconnectionDelayMax: 10000,
   auth: {
     token
