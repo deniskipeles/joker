@@ -2,6 +2,10 @@ body{
     margin: 0px !important;
 }
 
+.App {
+  max-width: 400px;
+}
+
 .makeStyles-storiesDiv-8::-webkit-scrollbar{
     display: none;
 }
