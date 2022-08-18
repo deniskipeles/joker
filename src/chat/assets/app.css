@@ -2,8 +2,8 @@ body{
     margin: 0px !important;
 }
 
-.App {
-  max-width: 400px;
+.main {
+  max-width:350px;
 }
 
 .makeStyles-storiesDiv-8::-webkit-scrollbar{
