@@ -28,7 +28,8 @@ const customStyles = makeStyles(() => ({
     bottom: 0,
     position: "fixed",
     width: '100vw !important',
-    zIndex: 999
+    zIndex: 999,
+    maxWidth:'400px'
   },
   fabDiv: {
     marginRight: '10px',
