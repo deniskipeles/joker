@@ -3,13 +3,11 @@ body{
 }
 
 .main {
-  max-width:400px;
-  margin: auto;
+  max-width:500px;
 }
 
 .bottomBar {
-  max-width:400px;
-  margin: auto;
+  max-width:500px;
 }
 
 .makeStyles-storiesDiv-8::-webkit-scrollbar{
